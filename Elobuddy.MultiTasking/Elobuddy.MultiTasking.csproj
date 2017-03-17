@@ -61,7 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="EbAwait.cs" />
+    <Compile Include="EbSleep.cs" />
+    <Compile Include="EbTask.cs" />
+    <Compile Include="EbTaskCompletedArgs.cs" />
+    <Compile Include="EbTaskPool.cs" />
+    <Compile Include="FPSManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

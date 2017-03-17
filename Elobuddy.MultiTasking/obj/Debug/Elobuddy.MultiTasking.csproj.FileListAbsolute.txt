@@ -10,4 +10,3 @@ c:\users\daniel\documents\visual studio 2015\Projects\Elobuddy.MultiTasking\Elob
 c:\users\daniel\documents\visual studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Debug\Elobuddy.MultiTasking.dll.config
 c:\users\daniel\documents\visual studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Debug\Elobuddy.MultiTasking.dll
 c:\users\daniel\documents\visual studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\obj\Debug\Elobuddy.MultiTasking.dll
-c:\users\daniel\documents\visual studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\obj\Debug\Elobuddy.MultiTasking.csprojResolveAssemblyReference.cache
