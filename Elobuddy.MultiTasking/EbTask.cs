@@ -63,7 +63,7 @@ namespace Elobuddy.MultiTasking
             TaskCompleted?.Invoke(new EbTaskCompletedArgs(ReturnValue, HasReturnValue));
         }
 
-        public void AddTask(EbTask task)
+        internal void AddTask(EbTask task)
         {
             ContinueTasks.Add(task);
         }
