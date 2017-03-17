@@ -64,7 +64,7 @@ namespace Elobuddy.MultiTasking
 
     public class EbSleep
     {
-        public int Milliseconds { get; }
+        internal int Milliseconds { get; }
         public EbSleep(int milliseconds)
         {
             Milliseconds = milliseconds;
@@ -73,10 +73,10 @@ namespace Elobuddy.MultiTasking
 
     public class EbTask
     {
-        public IEnumerator FuncEnumerator { get; }
-        public List<Action> ContinueFuncs = new List<Action>();
+        internal IEnumerator FuncEnumerator { get; }
+        internal List<Action> ContinueFuncs = new List<Action>();
         internal object ReturnValue { get; set; }
-        public bool StopOnDrop { get; }
+        internal bool StopOnDrop { get; }
 
         private int LastWaitSet;
         private int LastWaitTime;
@@ -87,15 +87,15 @@ namespace Elobuddy.MultiTasking
             FuncEnumerator = funcEnumerator;
         }
 
-        public bool HasToWait => Environment.TickCount - LastWaitSet < LastWaitTime;
+        internal bool HasToWait => Environment.TickCount - LastWaitSet < LastWaitTime;
 
-        public void SetWait(int time)
+        internal void SetWait(int time)
         {
             LastWaitSet = Environment.TickCount;
             LastWaitTime = time;
         }
 
-        public void AddCallback(Action f)
+        internal void AddCallback(Action f)
         {
             ContinueFuncs.Add(f);
         }
