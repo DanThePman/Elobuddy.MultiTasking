@@ -153,9 +153,10 @@ namespace Elobuddy.MultiTasking
             FPSManager.FPS_DROP_PERCENTAGE = PerCent;
         }
 
-        public static void Add(EbTask t)
+        public static EbTask Add(EbTask t)
         {
             Pool.Add(t);
+            return t;
         }
 
         public static EbTask Start(this EbTask t)
@@ -203,7 +204,7 @@ namespace Elobuddy.MultiTasking
                         var sleep = (EbSleep) returnVal;
                         sleepInstance = sleep;
                     }
-                    else if (returnVal != null)
+                    else
                     {
                         task.ReturnValue = returnVal;
                     }
