@@ -1,0 +1,13 @@
+C:\Users\Daniel\Documents\Visual Studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Release\Elobuddy.MultiTasking.pdb
+C:\Users\Daniel\Documents\Visual Studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Release\EloBuddy.dll
+C:\Users\Daniel\Documents\Visual Studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Release\EloBuddy.SDK.dll
+C:\Users\Daniel\Documents\Visual Studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Release\SharpDX.Direct3D9.dll
+C:\Users\Daniel\Documents\Visual Studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Release\SharpDX.dll
+C:\Users\Daniel\Documents\Visual Studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Release\SharpDX.XInput.dll
+C:\Users\Daniel\Documents\Visual Studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Release\Newtonsoft.Json.dll
+C:\Users\Daniel\Documents\Visual Studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Release\EloBuddy.Sandbox.dll
+C:\Users\Daniel\Documents\Visual Studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\obj\Release\Elobuddy.MultiTasking.csprojResolveAssemblyReference.cache
+C:\Users\Daniel\Documents\Visual Studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\obj\Release\Elobuddy.MultiTasking.pdb
+C:\Users\Daniel\Documents\Visual Studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Release\Elobuddy.MultiTasking.dll.config
+C:\Users\Daniel\Documents\Visual Studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Release\Elobuddy.MultiTasking.dll
+C:\Users\Daniel\Documents\Visual Studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\obj\Release\Elobuddy.MultiTasking.dll

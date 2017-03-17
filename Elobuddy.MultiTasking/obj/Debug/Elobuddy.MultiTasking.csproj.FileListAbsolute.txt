@@ -1,0 +1,12 @@
+c:\users\daniel\documents\visual studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Debug\Elobuddy.MultiTasking.pdb
+c:\users\daniel\documents\visual studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Debug\EloBuddy.dll
+c:\users\daniel\documents\visual studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Debug\EloBuddy.SDK.dll
+c:\users\daniel\documents\visual studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Debug\SharpDX.Direct3D9.dll
+c:\users\daniel\documents\visual studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Debug\SharpDX.dll
+c:\users\daniel\documents\visual studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Debug\SharpDX.XInput.dll
+c:\users\daniel\documents\visual studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Debug\Newtonsoft.Json.dll
+c:\users\daniel\documents\visual studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Debug\EloBuddy.Sandbox.dll
+c:\users\daniel\documents\visual studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\obj\Debug\Elobuddy.MultiTasking.pdb
+c:\users\daniel\documents\visual studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Debug\Elobuddy.MultiTasking.dll.config
+c:\users\daniel\documents\visual studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\bin\Debug\Elobuddy.MultiTasking.dll
+c:\users\daniel\documents\visual studio 2015\Projects\Elobuddy.MultiTasking\Elobuddy.MultiTasking\obj\Debug\Elobuddy.MultiTasking.dll
