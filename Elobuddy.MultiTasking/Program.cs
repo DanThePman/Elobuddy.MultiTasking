@@ -25,7 +25,7 @@ namespace Elobuddy.MultiTasking
         }
 
         private static int LastFpsDrop;
-        public static bool HasFpsDrop => Environment.TickCount - LastFpsDrop < 1000;
+        public static bool HasFpsDrop(float t) => Environment.TickCount - LastFpsDrop < t;
 
         private static void GameOnOnUpdate(EventArgs args)
         {
@@ -71,23 +71,54 @@ namespace Elobuddy.MultiTasking
         }
     }
 
+    public class EbTaskCompletedArgs : EventArgs
+    {
+        public EbTaskCompletedArgs(object returnValue, bool hasReturnValue)
+        {
+            ReturnValue = returnValue;
+            HasReturnValue = hasReturnValue;
+        }
+
+        public object ReturnValue { get; }
+        public bool HasReturnValue { get; }
+    }
+
     public class EbTask
     {
+        public delegate void CompletedH(EbTaskCompletedArgs args);
+        public event CompletedH TaskCompleted;
+
+        /// <summary>
+        /// Delay Time Of The Task In Milliseconds If Fps Drop
+        /// </summary>
+        public float FpsDropDelayTime { get; set; } = 1000;
+        internal bool HasToWait => Environment.TickCount - LastWaitSet < LastWaitTime;
         internal IEnumerator FuncEnumerator { get; }
         internal List<Action> ContinueFuncs = new List<Action>();
-        internal object ReturnValue { get; set; }
+
+        private object _returnValue;
+        internal object ReturnValue
+        {
+            get { return _returnValue; }
+            set
+            {
+                _returnValue = value;
+                HasReturnValue = true;
+            }
+        }
+
+        private bool HasReturnValue;
         internal bool StopOnDrop { get; }
 
         private int LastWaitSet;
         private int LastWaitTime;
+        
 
         public EbTask(IEnumerator funcEnumerator, bool PauseOnFpsDrop = true)
         {
             StopOnDrop = PauseOnFpsDrop;
             FuncEnumerator = funcEnumerator;
         }
-
-        internal bool HasToWait => Environment.TickCount - LastWaitSet < LastWaitTime;
 
         internal void SetWait(int time)
         {
@@ -100,12 +131,9 @@ namespace Elobuddy.MultiTasking
             ContinueFuncs.Add(f);
         }
 
-        public delegate void CompletedH(object ReturnValue);
-        public event CompletedH TaskCompleted;
-
         internal void OnTaskCompleted()
         {
-            TaskCompleted?.Invoke(ReturnValue);
+            TaskCompleted?.Invoke(new EbTaskCompletedArgs(ReturnValue, HasReturnValue));
         }
     }
 
@@ -162,7 +190,7 @@ namespace Elobuddy.MultiTasking
                 IEnumerator enumeratorContainer = task.FuncEnumerator;
                 EbSleep sleepInstance = null;
 
-                if (task.StopOnDrop && FPSManager.HasFpsDrop)
+                if (task.StopOnDrop && FPSManager.HasFpsDrop(task.FpsDropDelayTime))
                     continue;
 
                 bool couldMoveOn = enumeratorContainer.MoveNext();
@@ -170,12 +198,12 @@ namespace Elobuddy.MultiTasking
                 if (couldMoveOn)
                 {
                     object returnVal = enumeratorContainer.Current;
-                    if (returnVal is EbSleep)
+                    if (returnVal != null && returnVal is EbSleep)
                     {
                         var sleep = (EbSleep) returnVal;
                         sleepInstance = sleep;
                     }
-                    else
+                    else if (returnVal != null)
                     {
                         task.ReturnValue = returnVal;
                     }
