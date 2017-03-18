@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using EloBuddy;
 
 namespace Elobuddy.MultiTasking
@@ -40,6 +41,7 @@ namespace Elobuddy.MultiTasking
         }
 
         public static bool IsRunning(this EbTask t) => Pool.Contains(t);
+        public static bool IsRunning(this string TaskName) => Pool.Any(x => x.Name == TaskName);
         public static bool IsPaused(this EbTask t) => t.HasToWait || FPSManager.HasFpsDrop(t.FpsDropDelayTime);
 
         /// <summary>
@@ -89,31 +91,46 @@ namespace Elobuddy.MultiTasking
             Pool.AddRange(TasksToAdd);
         }
 
-        private static Tuple<EbTask, bool> GetDeepestTask(EbTask t, bool IsAwaiter = false)
+        struct DeppSearchResult
         {
-            if (t.HasAwaiter)
-                return GetDeepestTask(t.Awaiter, true);
+            public EbTask DeepTask;
+            public bool IsAwaiter;
+            public EbAwait DeepAwaiter;
 
-
-            return new Tuple<EbTask, bool>(t, IsAwaiter);
+            public DeppSearchResult(EbAwait deepAwaiter, EbTask deepTask, bool isAwaiter)
+            {
+                DeepAwaiter = deepAwaiter;
+                DeepTask = deepTask;
+                IsAwaiter = isAwaiter;
+            }
         }
 
-        private static void SetDeepAwaiterNull(EbTask mainTask, EbTask awaiter)
+        private static DeppSearchResult GetDeepestTask(EbTask t, EbAwait awaiter = null, bool IsAwaiter = false)
+        {
+            if (t.HasAwaiter && !t.Awaiter.IsNull)
+                return GetDeepestTask(t.Awaiter.Task, t.Awaiter, true);
+
+
+            return new DeppSearchResult(awaiter, t, IsAwaiter);
+        }
+
+        private static void SetDeepAwaiterNull(EbTask mainTask, EbAwait awaiter)
         {
             if (mainTask.Awaiter == awaiter)
             {
-                mainTask.Awaiter = null;
+                mainTask.Awaiter.SetNull();
                 return;
             }
 
-            SetDeepAwaiterNull(mainTask.Awaiter, awaiter);
+            SetDeepAwaiterNull(mainTask.Awaiter.Task, awaiter);
         }
 
         private static void ManageTask(List<EbTask> finishedTasks, List<EbTask> TasksToAdd, EbTask task)
         {
             var dT = GetDeepestTask(task);
-            var deepTask = dT.Item1;
-            bool wasAwaiter = dT.Item2;
+            var deepTask = dT.DeepTask;
+            var deepAwaiter = dT.DeepAwaiter;
+            bool wasAwaiter = dT.IsAwaiter;
 
             if (deepTask.HasToWait)
                 return;
@@ -139,12 +156,15 @@ namespace Elobuddy.MultiTasking
                     if (returnVal is EbAwait)
                     {
                         var ebAwait = (EbAwait)returnVal;
-                        var awaitTask = ebAwait.Task;
-                        deepTask.Awaiter = awaitTask;
+                        deepTask.Awaiter = ebAwait;
                         return;
                     }
 
                     deepTask.ReturnValue = returnVal;
+                    if (wasAwaiter)
+                    {
+                        deepAwaiter.AwaitReturn = returnVal;
+                    }
                 }
             }
 
@@ -165,7 +185,9 @@ namespace Elobuddy.MultiTasking
                 if (!wasAwaiter)
                     finishedTasks.Add(task);
                 else
-                    SetDeepAwaiterNull(task, deepTask);
+                {
+                    SetDeepAwaiterNull(task, deepAwaiter);
+                }
             }
         }
     }

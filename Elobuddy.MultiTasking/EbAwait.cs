@@ -15,6 +15,15 @@ namespace Elobuddy.MultiTasking
             SetTask(Task);
         }
 
+        public object AwaitReturn;
+
+        public void SetNull()
+        {
+            IsNull = true;
+        }
+
+        public bool IsNull { get; set; }
+
         private void SetTask(EbTask t) => Task = t;
     }
 }

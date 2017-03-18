@@ -6,7 +6,7 @@ namespace Elobuddy.MultiTasking
 {
     public class EbTask
     {
-        public string Name { get; set; }
+        public string Name { get; }
 
         public delegate void CompletedH(EbTaskCompletedArgs args);
         public event CompletedH TaskCompleted;
@@ -19,7 +19,7 @@ namespace Elobuddy.MultiTasking
         internal IEnumerator FuncEnumerator { get; }
         internal List<Action> ContinueFuncs = new List<Action>();
         internal List<EbTask> ContinueTasks = new List<EbTask>();
-        internal EbTask Awaiter;
+        internal EbAwait Awaiter;
 
         public bool HasAwaiter => Awaiter != null;
 
@@ -45,6 +45,7 @@ namespace Elobuddy.MultiTasking
         {
             StopOnDrop = PauseOnFpsDrop;
             FuncEnumerator = funcEnumerator;
+            Name = nameof(funcEnumerator);
         }
 
         internal void SetWait(int time)
